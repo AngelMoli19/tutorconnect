@@ -1,0 +1,13 @@
+{
+  "name": "tutorconnect",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "concurrently \"npm:backend\" \"npm:frontend\"",
+    "frontend": "npm --prefix frontend run dev",
+    "backend": "cd backend && .\\.venv\\Scripts\\python.exe -m uvicorn app.main:app --reload --env-file .env"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

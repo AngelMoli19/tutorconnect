@@ -4,4 +4,4 @@ backend/.venv/
 backend/.env
 backend/uploads/
 backend/tutorconnect_backend.egg-info/
-*.json
+backend/centered-cable-481021-n8-809a205166aa.json
