@@ -31,6 +31,7 @@ class Settings(BaseSettings):
     smtp_from: str | None = Field(default=None, validation_alias="SMTP_FROM")
     smtp_tls: bool = Field(default=True, validation_alias="SMTP_TLS")
     smtp_ssl: bool = Field(default=False, validation_alias="SMTP_SSL")
+    smtp_timeout: int = Field(default=10, validation_alias="SMTP_TIMEOUT")
     public_base_url: HttpUrl | None = Field(default=None, validation_alias="PUBLIC_BASE_URL")
 
 
