@@ -31,6 +31,9 @@ dev = [
     "black>=24.4.2",
 ]
 
+[tool.setuptools]
+packages = ["app"]
+
 [tool.black]
 line-length = 100
 target-version = ["py311"]
