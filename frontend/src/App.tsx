@@ -8,7 +8,6 @@ import { ResetPasswordPage } from "./pages/ResetPasswordPage";
 import { UsersPage } from "./pages/UsersPage";
 import { AssignmentsPage } from "./pages/AssignmentsPage";
 import { AdminReportsPage } from "./pages/AdminReportsPage";
-import { TutorandoDashboardPage } from "./pages/TutorandoDashboardPage";
 import { TutorandoProfilePage } from "./pages/TutorandoProfilePage";
 import { TutorandoSessionsPage } from "./pages/TutorandoSessionsPage";
 import { TutorSessionsPage } from "./pages/TutorSessionsPage";

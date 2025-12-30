@@ -15,7 +15,7 @@ export function TutorandoSessionsPage() {
   const [statusFilter, setStatusFilter] = useState<SessionStatus | "ALL">("ALL");
   const [selectedSession, setSelectedSession] = useState<SessionItem | null>(null);
   const [viewMode, setViewMode] = useState<"calendar" | "list">("calendar");
-  const [hoveredSessionId, setHoveredSessionId] = useState<number | null>(null);
+  const [hoveredSessionId, setHoveredSessionId] = useState<string | null>(null);
 
   const statusLabel: Record<SessionStatus, string> = {
     SCHEDULED: "Programada",
@@ -279,9 +279,7 @@ export function TutorandoSessionsPage() {
                 const session = (info.event.extendedProps as { session: SessionItem }).session;
                 setSelectedSession(session);
               }}
-              eventContent={(arg) => {
-                const session = (arg.event.extendedProps as { session: SessionItem }).session;
-                return {
+              eventContent={(arg) => ({
                   html: `
                     <div style="
                       padding: 0.5rem 0.75rem;
@@ -303,8 +301,7 @@ export function TutorandoSessionsPage() {
                       </div>
                     </div>
                   `
-                };
-              }}
+                })}
               height="auto"
             />
           </div>
@@ -554,7 +551,6 @@ export function TutorandoSessionsPage() {
           <SessionDetailsContent
             session={selectedSession}
             statusLabel={statusLabel}
-            onClose={() => setSelectedSession(null)}
           />
         </Modal>
       )}
@@ -565,11 +561,9 @@ export function TutorandoSessionsPage() {
 function SessionDetailsContent({
   session,
   statusLabel,
-  onClose,
 }: {
   session: SessionItem;
   statusLabel: Record<SessionStatus, string>;
-  onClose: () => void;
 }) {
   return (
     <div>

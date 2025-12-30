@@ -3,8 +3,8 @@ import { api } from "../api/client";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import type { AdminUser } from "../types/users";
-import type { SessionItem, SessionStatus } from "../types/sessions";
-import type { ObservationItem, ObservationCategory } from "../types/observations";
+import type { SessionItem } from "../types/sessions";
+import type { ObservationItem } from "../types/observations";
 import type { AttendanceEntry } from "../types/attendance";
 
 // Interfaz para datos de asistencia completos (por sesión)

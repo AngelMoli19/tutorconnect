@@ -35,7 +35,7 @@ export function TutorandoResourcesPage() {
   const [resources, setResources] = useState<ResourceItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchResources() {

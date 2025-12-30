@@ -39,7 +39,7 @@ export function TutorandoObservationsPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState<ObservationCategory | "ALL">("ALL");
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchObservations() {
