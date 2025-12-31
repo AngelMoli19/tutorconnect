@@ -7,61 +7,13 @@ import smtplib
 import threading
 from email.message import EmailMessage
 
-import httpx
-
 from app.core.config import get_settings
 
 logger = logging.getLogger(__name__)
 
 
-def _parse_sender(sender: str | None) -> tuple[str | None, str | None]:
-    if not sender:
-        return None, None
-    if "<" in sender and ">" in sender:
-        name, email = sender.split("<", 1)
-        return name.strip() or None, email.replace(">", "").strip() or None
-    return None, sender.strip()
-
-
-def _send_email_brevo(subject: str, body: str, recipients: list[str]) -> None:
-    settings = get_settings()
-    if not settings.brevo_api_key:
-        return
-    if not recipients:
-        return
-
-    sender_name, sender_email = _parse_sender(settings.smtp_from)
-    if not sender_email:
-        return
-
-    payload = {
-        "sender": {"email": sender_email, "name": sender_name or sender_email},
-        "to": [{"email": email} for email in recipients],
-        "subject": subject,
-        "textContent": body,
-    }
-    headers = {
-        "accept": "application/json",
-        "content-type": "application/json",
-        "api-key": settings.brevo_api_key,
-    }
-    try:
-        response = httpx.post(
-            "https://api.brevo.com/v3/smtp/email",
-            json=payload,
-            headers=headers,
-            timeout=settings.brevo_timeout,
-        )
-        response.raise_for_status()
-    except Exception as exc:  # noqa: BLE001
-        logger.warning("Email notification failed: %s", exc)
-
-
 def _send_email_sync(subject: str, body: str, recipients: list[str]) -> None:
     settings = get_settings()
-    if settings.brevo_api_key:
-        _send_email_brevo(subject, body, recipients)
-        return
     if not settings.smtp_host or not settings.smtp_from:
         return
     if not recipients:
